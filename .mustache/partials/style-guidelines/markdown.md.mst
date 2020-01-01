@@ -1,0 +1,174 @@
+- There is no set column width limits for MarkDown files, but do not get carried away because the focus should be on getting readers _up to speed_
+
+- External links are permitted but try to keep it to a minimum; instead refer to built-in `man` and/or `help` documentation wherever possible
+
+- Relative links to other files or locations within documentation is preferred; except for _cross-branch_ linking in which case absolute links are preferred
+
+  - Links be should organized into a Links Section bellow the Content, after three (**`3`**) blank lines
+  - Link Names should use two underscores between base location and file or title
+
+- Lists should have one blank line between first layer of items
+
+  - Inner lists should be tabbed in by two (**`2`**) spaces and have no blank lines between items of the same level
+  - Nesting lists beyond one layer is discouraged and information should be restructured when it becomes tempting to do otherwise
+
+- Provide a _`Table of Contents`_ section when headings become numerous and use three underscores (**`___`**) as Dividers between main sections
+
+  - Each heading should have an internal MarkDown _tag_, see following example, used for linking within the document
+  - Only one _level one_ heading (lines prefixed with a single **`#`** one hash-sign) may be included in a MarkDown document and only when no _`FrontMatter`_ defines a **`title:`** property
+  - Main Sections should have a _level two_ heading (prefixed by **`##`** two hash-signs)
+  - Sub-Sections should have a _level three_ heading, and nesting beyond this is discouraged
+
+- Code Blocks should have the related language defined as proper nouns, eg. `Bash` not `bash`
+
+  - Formatting within code blocks should follow related guidelines for that language
+  - Code blocks should not exceed **`120`** lines in length
+  - Use links to files instead of copying files into Code Blocks
+  - Title code blocks with bold back-ticks and example path for re-use elsewhere within documentation...
+
+
+```MarkDown
+**`file-name.ext`**
+```
+
+
+- Two blank lines should go between Sections, Sub-Sections, Dividers, Code Blocks, and List Blocks.
+
+- Three blank lines should go between Description, and between Content and Links Section
+
+
+**`readme.md`**
+
+
+```MarkDown
+# Title of Document
+
+
+Short description about content of document, project, and/or code
+
+
+
+------
+
+
+#### Table of Contents
+
+
+- [First][heading__first_section]
+
+- [Second][heading__second_section]
+
+  - [Bash Time][heading__bash_time]
+  - [Bash Variables][heading__bash_variables]
+
+- [End][heading__end_section]
+
+
+------
+
+
+## First Section
+[heading__first_section]:
+  #first-section
+  "Link hover-text for first section"
+
+
+A thing or two about `git`...
+
+
+\```Bash
+_name='S0AndS0'
+_repo='.github'
+
+git clone git@github.com:${_name}/${_repo}.git
+\```
+
+
+Maybe a table with some columns to organize something...
+
+
+| Column One | Column Two |
+|------------|------------|
+| cell       | cell       |
+| cell       | cell       |
+
+
+___
+
+
+## Second Section
+[heading__second_section]:
+  #second-section
+  "Link hover-text for second section"
+
+
+Some notes about _`Bash`_
+
+
+### Bash Time
+[heading__bash_time]:
+  #bash-time
+  "Link hover-text for Bash time"
+
+
+**[`time-stamp-date.sh`][branch__current__another_file]**
+
+
+\```Bash
+time_stamp_date() {
+  local _date="${1:-$(date)}"
+  printf '%s\n' "$(date --date="${_date}" +'%Y%m%d')"
+}
+\```
+
+
+### Bash Variables
+[heading__bash_variables]:
+  #bash-variables
+  "Link hover-text for Bash variables"
+
+
+Interactive console examples...
+
+\```Bash
+_now_time_stamp="$(time_stamp_date)"
+printf '%s\n' "${_now_time_stamp}"
+#> 20191125
+
+
+_past_time_stamp="$(time_stamp_date 'July 01, 1970')"
+printf '%s\n' "${_past_time_stamp}"
+#> 19700701
+\```
+
+
+___
+
+
+## End Section
+[heading__end_section]:
+  #end-section
+  "Link hover-text for end section"
+
+
+In summation this is the general outline of MarkDown formatting.
+
+
+Check [`gh-pages`][branch__gh_pages] branch for example usage and documentation.
+
+
+See [Somewhere Else][example__somewhere_else] for more details on something else.
+
+
+
+[branch__current__another_file]: time-stamp-date.sh
+
+
+[branch__gh_pages]: https://github.com/{{ name }}/project-name/tree/gh-pages
+
+
+[example__somewhere_else]: https://example.com/somewhere-else.html
+```
+
+
+> Note, any prefixed back-slashes (`\` ) should be removed from above example

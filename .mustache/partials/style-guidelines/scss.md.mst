@@ -1,0 +1,65 @@
+- Lines should not exceed `120` columns wide for code and no more than `80` columns wide for comment blocks
+
+- Comments should use [SASS Docs](http://sassdoc.com/) syntax
+
+- Variable and function names should be descriptive, please do not issue Pull Requests with _`camelCased`_ names
+
+- Declare globally scoped variables sparingly, and always allow for overwriting of defaults
+
+- Properly handle errors and/or allow errors to _bubble up_, _ask permission_ when necessary, and fail fast
+
+- `continue` past non-matches within loops to avoid _over-nesting_ of conditional logic
+
+
+**`_scss/modules/vendor-prefixes/lib/render-vendor-prefix.scss`**
+
+
+```SCSS
+/// Outputs property:value SCSS maps prefixing either property or value
+/// @param {string} $property  - The CSS property name
+/// @param {*} $value          - Number, string, even CSS _function_ calls
+/// @param {list} $vendor-list - List of vendor prefixes to pre-append
+/// @param {string} $prefix    - Weather `string` or `value` should be pre-append to
+/// @throw
+/// @example
+///   $mapped-vendors: map-vendor-prefixes(
+///     $property: text-stroke-color,
+///     $value: white,
+///     $vendor-list: (-webkit, -o),
+///     $prefix: property
+///   );
+///   // Assigns $mapped-vendors similar to...
+///   // (
+///   //   -webkit-text-stroke-color: white,
+///   //        -o-text-stroke-color: white,
+///   //           text-stroke-color: white
+///   // )
+/// @author S0AndS0
+/// @license AGPL-3.0
+@mixin render-vendor-prefixes(
+  $property: false,
+  $value: false,
+  $vendor-list: false,
+  $prefix: property,
+){
+  // Obtain formatted map of supplied input
+  $vendor-prefixes: map-vendor-prefixes(
+    $property: $property,
+    $value: $value,
+    $vendor-list: $vendor-list,
+    $prefix: $prefix,
+  );
+  @if $prefix == 'property' {
+    @each $p, $v in $vendor-prefixes {
+      #{$p}: $v;
+    }
+  } @else if $prefix == 'value' {
+    @each $v in map-get($vendor-prefixes, $property) {
+      #{$property}: #{$v};
+    }
+  } @else {
+    @warn "Help, I have been force fed bad input!";
+    @error "Try '$prefix: property' or '$prefix: value' next time.";
+  }
+}
+```

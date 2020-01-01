@@ -1,0 +1,131 @@
+{
+  "ghf": true,
+  "output_directory": "~/git/hub/org-name/.github",
+  "name": "org-name",
+  "author": "your-name",
+  "email": "name@host.tld",
+  "description": "Quick statement on what this Account or Organization aims to accomplish",
+  "license": "AGPL-3.0",
+  "code_of_conduct": "contributor-covenant",
+  "funding": {
+    "key": "liberapay",
+    "url": "org-name"
+  },
+  "languages": [
+    {
+      "name": "Awk",
+      "emoji_word": ":tophat:",
+      "emoji_code": "&#x1F3A9;"
+    },
+    {
+      "name": "Bash",
+      "emoji_word": ":shell:",
+      "emoji_code": "&#x1F41A;"
+    },
+    {
+      "name": "CSS",
+      "emoji_word": ":paintbrush:",
+      "emoji_code": "&#x1F58C;"
+    },
+    {
+      "name": "Docker",
+      "emoji_word": ":whale2:",
+      "emoji_code": "&#x1F40B;"
+    },
+    {
+      "name": "HTML",
+      "emoji_word": ":spider_web:",
+      "emoji_code": "&#x1F578;"
+    },
+    {
+      "name": "JavaScript",
+      "emoji_word": ":coffee:",
+      "emoji_code": "&#x2615;"
+    },
+    {
+      "name": "Kivy",
+      "emoji_word": ":snake:",
+      "emoji_code": "&#x1F40D;"
+    },
+    {
+      "name": "Liquid",
+      "emoji_word": ":fountain:",
+      "emoji_code": "&#x26F2;"
+    },
+    {
+      "name": "MarkDown",
+      "emoji_word": ":memo:",
+      "emoji_code": "&#x1F4DD;"
+    },
+    {
+      "name": "Python",
+      "emoji_word": ":snake:",
+      "emoji_code": "&#x1F40D;"
+    },
+    {
+      "name": "SCSS",
+      "emoji_word": ":factory:",
+      "emoji_code": "&#x1F3ED;"
+    }
+  ],
+  "files": [
+    {
+      "in_path": ".mustache/.github/ISSUE_TEMPLATE/bug_report.md.mst",
+      "out_path": ".github/ISSUE_TEMPLATE/bug_report.md"
+    },
+    {
+      "in_path": ".mustache/.github/ISSUE_TEMPLATE/feature_request.md.mst",
+      "out_path": ".github/ISSUE_TEMPLATE/feature_request.md"
+    },
+    {
+      "in_path": ".mustache/.github/pull_request_template.md.mst",
+      "out_path": ".github/pull_request_template.md"
+    },
+    {
+      "in_path": ".mustache/.github/PULL_REQUEST_TEMPLATE/bug_fix.md.mst",
+      "out_path": ".github/PULL_REQUEST_TEMPLATE/bug_fix.md"
+    },
+    {
+      "in_path": ".mustache/.github/PULL_REQUEST_TEMPLATE/feature_addition.md.mst",
+      "out_path": ".github/PULL_REQUEST_TEMPLATE/feature_addition.md"
+    },
+    {
+      "in_path": ".mustache/.github/README.md.mst",
+      "out_path": ".github/README.md"
+    },
+    {
+      "in_path": ".mustache/CONTRIBUTING.md.mst",
+      "out_path": "CONTRIBUTING.md",
+      "partials": [
+        ".mustache/partials/development-setup/linux.md.mst",
+        ".mustache/partials/development-setup/windows.md.mst",
+        ".mustache/partials/git-tips/branches.md.mst",
+        ".mustache/partials/git-tips/commits.md.mst",
+        ".mustache/partials/how-to-contribute/open-issues.md.mst",
+        ".mustache/partials/how-to-contribute/report-bugs.md.mst",
+        ".mustache/partials/style-guidelines/awk.md.mst",
+        ".mustache/partials/style-guidelines/bash.md.mst",
+        ".mustache/partials/style-guidelines/css.md.mst",
+        ".mustache/partials/style-guidelines/docker.md.mst",
+        ".mustache/partials/style-guidelines/html.md.mst",
+        ".mustache/partials/style-guidelines/javascript.md.mst",
+        ".mustache/partials/style-guidelines/liquid.md.mst",
+        ".mustache/partials/style-guidelines/markdown.md.mst",
+        ".mustache/partials/style-guidelines/python.md.mst",
+        ".mustache/partials/style-guidelines/scss.md.mst"
+      ]
+    },
+    {
+      "in_path": ".mustache/FUNDING.yml.mst",
+      "out_path": "FUNDING.yml"
+    },
+    {
+      "in_path": ".mustache/SUPPORT.md.mst",
+      "out_path": "SUPPORT.md"
+    },
+    {
+      "in_path": ".mustache/SECURITY.md.mst",
+      "out_path": "SECURITY.md"
+    }
+  ]
+}

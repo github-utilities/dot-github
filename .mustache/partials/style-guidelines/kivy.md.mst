@@ -1,0 +1,35 @@
+> See Python style guidelines for Python files
+
+
+- Utilize Python for logics and dynamic UI elements
+
+- As much as possible, utilize `.kv` files for styling and default configurations
+
+
+**`adaptive_gridlayouts.kv`**
+
+
+```Kivy
+## Check the Python methods for all of the fanciness this widget has.
+<Adaptive_GridLayout>:
+    spacing: 10
+    row_force_default: True
+    size_hint_y: None
+    rows_minimum: self._calc_rows_minimum()
+    height: self._calc_min_height()
+
+
+## Inherits from Adaptive_GridLayout
+<Adaptive_Row_GridLayout>:
+    cols: len(self.children) if len(self.children) > 0 else 1
+    rows: 1
+    spacing: 0
+
+
+<Adaptive_TextInput>:
+    synopsis_line_limit: 2
+    use_bubble: True
+    allow_copy: True
+    size_hint_y: None
+    height: self.minimum_height
+```

@@ -1,0 +1,57 @@
+- First line should not exceed `74` columns wide and punctuation such as apostrophes, quotes, and periods (`"'."`) should be avoided
+
+- First line should be separated from message content by three blank lines
+
+- While not required the following emoji_word may be used as the first _word_ of commit messages
+
+  - :tada:             `:tada:` for `Initial Commit` of repository, **not** to be used when re-naming files
+  - :art:              `:art:` for format and/or structure related changes
+{{#languages}}
+  {{#emoji_word}}{{#name}}
+  - {{emoji_word}} `{{emoji_word}}` for changes to {{name}} files.
+  {{/name}}{{/emoji_word}}
+{{/languages}}
+  - :fire:             `:fire:` for deletion of files, code, or documentation
+  - :hankey:           `:hankey:` please avoid needing to use as it's for when moving files or content between branches
+  - :dizzy:            `:dizzy:` when re-naming or moving files within a branch, it'll happen for newer projects but need for use is to be avoided past version **`0.0.5`**
+
+  - :bug:              `:bug:` for _stomping_ bugs in general
+  - :smoking:          `:smoking:` for resource bug fixes, eg. memory leaks, recursion limits, CPU load
+  - :facepunch:        `:facepunch:` when _blaming_ one's self and new commit is to fix bug from recently past commit
+  - :do_not_litter:    `:do_not_litter:` when _blaming_ another's recent changes for requiring new committed bug fix
+  - :lock:             `:lock:` for security related fixes
+
+  - :penguin:          `:penguin:` for fixing or improving Linux performance or compatibility
+  - :apple:            `:apple:` for fixing or improving Apple/Mac performance or compatibility
+  - :checkered_flag:   `:checkered_flag:` for fixing or improving Windows/MS performance or compatibility
+
+  - :arrow_up:         `:arrow_up:` for tracking upgraded dependencies
+  - :arrow_down:       `:arrow_down:` for tracking downgraded dependencies
+  - :bookmark:         `:bookmark:` for Tagging Releases and Request For Comments (RFC)
+
+  - :white_check_mark: `:white_check_mark:` for adding tests
+  - :green_heart:      `:green_heart:` when fixing Continuous Integration builds
+
+  - :ship:             `:ship:` when opening a Pull Request
+  - :stars:            `:stars:` for accepting a Pull Request
+  - :no_entry:         `:no_entry:` for rejecting a Pull Request
+
+
+Additional notes should follow [Markdown Style Guidelines][heading__style_guidelines__markdown]; except for headings as _`#`s_ are considered comments by default and thus ignored by many `commit` message handlers, see following example for other formatting differences
+
+
+```Bash
+git add README.md
+git commit -F- <<'EOF'
+:memo: Adds more readme content and spelling corrections
+
+
+
+**Additions**
+Links where tested locally and new content should explain things better.
+
+
+**Corrections**
+Other than spelling there where a few confusing spots that where also reworded.
+EOF
+```

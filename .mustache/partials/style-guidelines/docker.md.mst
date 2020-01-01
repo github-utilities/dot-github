@@ -1,0 +1,23 @@
+To avoid odd bugs Dockerfiles should be as minimal as possible...
+
+
+```Dockerfile
+FROM ruby:2.5
+
+
+ENV GEM_HOME="/usr/local/bundle"
+ENV PATH="$GEM_HOME/bin:$GEM_HOME/gems/bin:$PATH"
+
+
+RUN gem install bundler -v '< 2'
+
+
+COPY entrypoint.sh /
+
+
+ENTRYPOINT ["bash"]
+CMD ["/entrypoint.sh"]
+```
+
+
+... feel free to add comments where necessary and please review relevant style guidelines for project specific entrypoint scripts.

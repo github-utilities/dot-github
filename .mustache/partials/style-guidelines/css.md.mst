@@ -1,0 +1,45 @@
+- Try to be concise because Organizations such as [Liquid Utilities][liquid_utilities] and [SCSS Utilities][scss_utilities] should be contributed to for compiling HTML and CSS from complex data structures and/or building Templates
+
+- Lines should not exceed `120` columns wide whenever possible
+
+- Use _`BEM`_ or similarly descriptive formatting for class names
+
+
+**`assets/css/main.css`**
+
+
+```CSS
+/**
+ * Style container__ classes
+ */
+.container__header,
+.container__main_content,
+.container__footer {
+  margin-left: 50px;
+  margin-right: 50px;
+
+}
+
+.container__main_content {
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.container__footer {
+  position: fixed;
+  bottom: 0;
+  max-height: 100px;
+}
+
+
+/**
+ * Style header__ classes
+ */
+.header__title {
+  text-align: left;
+}
+
+.header__description {
+  text-align: right;
+}
+```

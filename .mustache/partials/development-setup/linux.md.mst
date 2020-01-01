@@ -1,0 +1,58 @@
+> The following steps and variable usage may also work on Mac, and may be Windows **if** a Bash shell is available.
+
+
+**Shared Variables**
+
+
+```Bash
+_git_name='your-name'
+_organization='{{ name }}'
+_repository='project-name'
+
+
+_https_origin_url="https://github.com/${_organization}/${_repository}.git"
+_git_origin_url="git@github.com:${_organization}/${_repository}.git"
+_https_fork_url="https://github.com/${_git_name}/${_repository}.git"
+_git_fork_url="git@github.com:${_git_name}/${_repository}.git"
+```
+
+
+> The above Bash variables will be referenced within following sub-sections, modify the values to suite the Forked Repository.
+
+
+Setup remotes via one of the following;
+
+
+1. Make a directory path for Git sources and change directories
+
+2. Clone fork, checkout `gh-pages` or `example` branch, and setup origin tracking
+
+3. Setup tracking of fork HTTPS URL tracking from perspective of project root
+
+4. Setup tracking of fork Git URL tracking from perspective of submodule root
+
+
+```bash
+mkdir -vp "${HOME}/github/${_git_name}"
+cd "${HOME}/github/${_git_name}"
+
+
+git clone --origin forked "${_git_fork_url}"
+cd "${_repository}"
+git checkout gh-pages
+git remote add origin "${_git_origin_url}"
+
+
+git config --file=.gitmodules submodule.browser-storage.url "${_https_fork_url}"
+git submodule sync
+git submodule update --init --recursive --remote
+
+
+cd "modules/${_repository}"
+git remote add forked "${_git_fork_url}"
+git fetch forked
+git branch --set-upstream-to=forked/master
+```
+
+
+_`git push forked master`_ _should_ push to the forked repository URL, and _`git fetch origin master`_ will download any updates from this Organization. If any updates where downloaded then be sure to merge before issuing a Pull Request.

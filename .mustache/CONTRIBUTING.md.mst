@@ -1,0 +1,335 @@
+# Contributing to {{# toTitleCase }}{{ name }}{{/ toTitleCase }}
+[heading__title]:
+  #{{# stripForID }}Contributing to {{ name }}{{/ stripForID }}
+  "&#x2B06; Top of this document"
+
+
+Thanks for even thinking about it!
+
+
+The text within this document are not _set in stone_ rules but guidelines, and much like other files maintained by {{# toTitleCase }}{{ name }}{{/ toTitleCase }} the following may be edited via a _`Pull Request`_.
+
+
+
+------
+
+
+#### Table of Contents
+
+
+- [:arrow_up: Top of this document][heading__title]
+
+- [:customs: Code of Conduct][heading__code_of_conduct]
+
+- [How to Contribute][heading__how_to_contribute]
+
+  - [Open Issues][heading__open_issues]
+  - [Report Bugs][heading__report_bugs]
+  - [Suggest Enhancements][heading__suggest_enhancements]
+
+- [Style Guidelines][heading__style_guidelines]
+
+{{#ghf}}
+  {{#languages}}
+  - [{{emoji_word}} {{name}}][heading__style_guidelines__{{#toLowerCase}}{{name}}{{/toLowerCase}}]
+  {{/languages}}
+{{/ghf}}
+{{^ghf}}
+  {{#languages}}
+  - [{{{emoji_code}}} {{name}}][heading__style_guidelines__{{#toLowerCase}}{{name}}{{/toLowerCase}}]
+  {{/languages}}
+{{/ghf}}
+
+- [:computer: Local Development Setup][heading__local_development_setup]
+
+  - [:penguin: Linux][heading__linux_development_setup]
+  - [:checkered_flag: Windows][heading__windows_development_setup]
+
+- [Git Tips][heading__git_tips]
+
+  - [Commits][heading__git_commit_tips]
+  - [Branching][heading__git_branch_tips]
+
+    - [Development][heading__development_git_branches]
+    - [Merging][heading__git_merge_tips]
+
+- [Pull Requests][heading__pull_requests]
+
+- [:copyright: License][heading__license]
+
+- [&#x1F4C7; Attribution][heading__attribution]
+
+
+------
+
+{{#code_of_conduct}}
+
+## Code of Conduct
+[heading__code_of_conduct]:
+  #code-of-conduct
+  "&#x1F6C3; A teaser pulled from {{ code_of_conduct }} Code of Conduct"
+
+
+```
+{{{ includeConduct }}}
+```
+
+
+Review the [whole thing][branch__current__code_of_conduct] to see what is expected of those that maintain code with {{# toTitleCase }}{{ name }}{{/ toTitleCase }}
+
+
+{{/code_of_conduct}}
+
+
+## How to Contribute
+[heading__how_to_contribute]:
+  #how-to-contribute
+  ""
+
+
+The goal is, as always, useful code and documentation, though <sub>[![Support][badge__support]][branch__current__support]</sub> is always appreciated. Sharing Repositories maintained by this Organization is an excellent way to contribute if none of the following options are applicable, because the more eyes on a Code Base the more likely it seems that bugs will be found and fixed.
+
+
+### Open Issues
+[heading__open_issues]:
+  #open-issues
+  ""
+
+
+{{> open-issues.md}}
+
+### Report Bugs
+[heading__report_bugs]:
+  #report-bugs
+  ""
+
+
+{{> report-bugs.md}}
+
+___
+
+
+## Style Guidelines
+[heading__style_guidelines]:
+  #style-guidelines
+  ""
+
+
+No-one _should_ get offended if a new line is forgotten or similar, but please do **not** break anything when issuing Pull Requests.
+
+
+- Code that operates as intended is as important as documentation that is comprehensible, so do **not** sacrifice readability for anything
+
+- In most cases two (**`2`**) should be used between sections, one (**`1`**) between sub-sections, and three (**`3`**) between headers and footers or _boilerplate_ sections
+
+- URLs may _break_ column width limits
+
+- Tabs shall be a sequence of four spaces (**`    `**), generally no literal tabs (`\t`) will be permitted within code or documentation
+
+- Project, File, and Directory names _should_ be lowercase, with hyphens (**`-`**) in place of spaces (**` `**) except where GitHub requires otherwise
+
+- Documentation should be no more than `1024` lines per file
+
+- Code specific (`.sh`) files should aim for less than `512` lines of actionable code, and _doc-strings_/comments should not exceed `20%` of total lines within such files
+
+- _Unix-ish_ new-lines (**`\n`**) are to be used within all files, Pull Request using other line-breaks will be rejected until corrected
+
+
+{{#languages}}
+### {{name}} Style Guidelines
+[heading__style_guidelines__{{#toLowerCase}}{{name}}{{/toLowerCase}}]:
+  #{{# stripForID }}{{name}} Style Guidelines{{/ stripForID }}
+  "{{{emoji_code}}} Style Guidelines for {{name}}"
+
+
+{{#renderPartialsPath}}style-guidelines/{{#toLowerCase}}{{name}}{{/toLowerCase}}.md.mst{{/renderPartialsPath}}
+
+{{/languages}}
+
+___
+
+
+## Local Development Setup
+[heading__local_development_setup]:
+  #local-development-setup
+  "&#x1F4BB;"
+
+
+For repositories that include a `_config.yml` file within a `gh-pages` branch then Jekyll is required for building documentation, see the [Jekyll Admin][jekyll_admin] for setup and automation scripts built to make setup tasks a little swifter. Otherwise most projects of this Organization only require a Bash shell that is reasonably up-to date.
+
+
+### Linux Development Setup
+[heading__linux_development_setup]:
+  #linux-development-setup
+  "&#x1F427; May work on Mac, and maybe Windows **if** Bash shell is available"
+
+{{> linux.md}}
+
+
+### Windows Development Setup
+[heading__windows_development_setup]:
+  #windows-development-setup
+  "&#x1F3C1; Pull Requests are most welcome for correcting anything that might be erroneous"
+
+{{> windows.md}}
+
+___
+
+
+## Git Tips
+[heading__git_tips]:
+  #git-tips
+  ""
+
+
+This will not be an in-depth or exhaustive guide on `git` usage, as the preexisting documentation available via commands such as _`git help`_ and _`git help submodule`_ are thorough.
+
+
+### Git Commit Tips
+[heading__git_commit_tips]:
+  #git-commit-tips
+  ""
+
+
+{{> commits.md}}
+
+
+### Git Branch Tips
+[heading__git_branch_tips]:
+  #git-branch-tips
+  ""
+
+
+{{> branches.md}}
+
+
+___
+
+
+## Pull Requests
+[heading__pull_requests]:
+  #pull-requests
+  ""
+
+
+Issuing Pull Requests to repositories maintained by this Organization will only be considered **if** shared under the same licensing defined under [License](#license) section of this document. Please use any relevant examples from the [`pull_request.md`][branch__current__pull_request] Template and adherer to the Style Guidelines for [Git Commits](#git-commit-tips)
+
+
+___
+
+
+{{#license}}
+## License
+[heading__license]:
+  #license
+  "&#x2696; Copyright notice"
+
+
+```
+{{{ includeLicense }}}
+```
+
+
+For further details review full length version of [{{ license }}][branch__current__license] License.
+{{/license}}
+{{^license}}
+## License
+[heading__license]:
+  #license
+  "&#x2696; Copyright notice"
+
+
+```
+All rights reserved.
+```
+
+
+For further details contact {{# toTitleCase }}{{ name }}{{/ toTitleCase }}.
+{{/license}}
+
+
+___
+
+
+## Attribution
+[heading__attribution]:
+  #attribution
+  "&#x1F4C7; Resources that where helpful in building this project so far"
+
+
+Portions of this document, such as emoji_word usage, where inspired by [_`contributing.md`_][atom__contributing] guidelines from the Atom IDE development team.
+
+Templating of this and other documents within the repository where compiled with [Mustache][mustache_js] _powers_
+
+
+
+[branch__current__issues]:
+  issues
+  "Please search for existing issues that may be added to or closed"
+
+[branch__current__issues_new]:
+  issues/new
+  "Select the appropriate template when available"
+
+[branch__current__network_members]:
+  network/members
+  "Perhaps you too may be counted amount those that have Forked repositories maintain by {{# toTitleCase }}{{ name }}{{/ toTitleCase }}"
+
+[branch__current__support]:
+  SUPPORT.md
+  "Best avenues for seeking support of {{# toTitleCase }}{{ name }}{{/ toTitleCase }}"
+
+
+[branch__current__code_of_conduct]:
+  CODE_OF_CONDUCT.md
+  "Please do **not** encourage new guidelines to be added"
+
+[branch__current__bug_report]:
+  ISSUE_TEMPLATE/bug_report.md
+  "Create a report to help us improve"
+
+[branch__current__feature_request]:
+  ISSUE_TEMPLATE/feature_request.md
+  "Suggest an idea for this project"
+
+[branch__current__pull_request]:
+  pull_request_template.md
+  "Template for general Pull Request"
+
+[branch__current__pull_request__bug_fix]:
+  PULL_REQUEST_TEMPLATE/bug_fix.md
+  "Template for Pull Request that fixes a bug"
+
+[branch__current__pull_request__feature_addition]:
+  PULL_REQUEST_TEMPLATE/feature_addition.md
+  "Template for Pull Request that adds a feature"
+
+[branch__current__readme]:
+  README.md
+  "Highlights various resources this repository contains"
+
+{{#license}}
+
+[branch__current__license]:
+  /LICENSE
+  "&#x2696; Full length version of {{ license }} License"
+
+{{/license}}
+
+[branch__current__security]:
+  /SECURITY.md
+  "Best practices for reporting issues of a security related nature"
+
+
+[badge__issues]: https://img.shields.io/github/issues/{{ name }}/.github.svg
+
+[badge__contributors]: https://img.shields.io/github/forks/{{ name }}/.github.svg?color=005571&label=Contributors
+
+[badge__support]: https://img.shields.io/badge/&hearts;-Support-lightgray.svg?labelColor=success&color=gray
+
+
+[atom__contributing]: https://github.com/atom/atom/blob/master/CONTRIBUTING.md
+
+[mustache_js]: https://github.com/janl/mustache.js
+
+[jekyll_admin]: https://github.com/S0AndS0/Jekyll_Admin

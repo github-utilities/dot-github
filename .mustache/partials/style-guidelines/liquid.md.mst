@@ -1,0 +1,62 @@
+- Comments in most cases should precede code
+
+- Variable and function names should be descriptive and underscores (**`_`**) in place of spaces (**` `**) or hyphens (**`-`**) between words, please do not issue Pull Requests with _`camelCased`_ names
+
+- `continue` past non-matches within loops to avoid _over-nesting_ of conditional logic
+
+
+**`_includes/modules/filthify/filthify.html`**
+
+
+```Liquid
+{% capture workspace__filthify %}
+  {% comment %}
+    This attempts to stupify and filthify content that
+    spent time with smartify and sanitation filters.
+
+    Note, this will add one blank line at the end of output.
+  {% endcomment %}
+
+
+
+  {% assign input = include.input | default: nil %}
+  {% assign strip_html = include.strip_html | default: false %}
+  {% if input %}
+    {% assign html_sanitized = '&amp;:&, &lt;:<, &gt;:>, &#126:~' %}
+    {% assign smartified = '“:", ”:", –:--, —:---, …:...' %}
+    {% assign smartified_quotes = "‘:', ’:'" %}
+
+    {% assign characters_list = html_sanitized %}
+    {% assign characters_list = characters_list | append: ', ' | append: smartified %}
+    {% assign characters_list = characters_list | append: ', ' | append: smartified_quotes %}
+    {% assign characters_list = characters_list | split: ', ' %}
+
+    {% if strip_html %}
+      {% assign filthified_input = input | strip_html %}
+    {% else %}
+      {% assign filthified_input = nil %}
+    {% endif %}
+
+    {% for character_pare in characters_list %}
+      {% assign sanitized = character_pare | split: ':' | first %}
+      {% assign filthified = character_pare | split: ':' | last %}
+      {% if input contains sanitized %}
+
+        {% if filthified_input %}
+          {% assign filthified_input = filthified_input | replace: sanitized, filthified %}
+        {% else %}
+          {% assign filthified_input = input | replace: sanitized, filthified %}
+        {% endif %}
+
+      {% else %}
+
+        {% unless filthified_input %}
+          {% assign filthified_input = input %}
+        {% endunless %}
+
+      {% endif %}
+    {% endfor %}
+
+  {% endif %}
+{% endcapture %}{% if filthified_input %}{{ filthified_input }}{% endif %}{% assign filthified_input = nil %}{% assign workspace__filthify = nil %}
+```

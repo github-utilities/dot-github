@@ -1,0 +1,73 @@
+- Lines should not exceed `120` columns wide for code and no more than `80` columns wide for comment blocks
+
+- Comments in most cases should precede code
+
+- Tabs shall be a sequence of four spaces (`    `) each
+
+
+**`lib/awk-modules/from-till/from-till.awk`**
+
+
+```Awk
+#!/usr/bin/awk -f
+
+
+BEGIN {
+
+    for (i = 1; i < ARGC; i++) {
+
+        if (ARGV[i] ~ "^--from=") {
+            _from = substr(ARGV[i], 8)
+            delete ARGV[i]
+        }
+
+        if (ARGV[i] ~ "^--till=") {
+            _till = substr(ARGV[i], 8)
+            delete ARGV[i]
+        }
+
+    }
+
+
+    ## Default variables used immediately within script _body_
+    _buffer_index = 0
+
+}
+
+
+{
+
+    if (_matched_from) {
+        _lines_buffer[_buffer_index] = $0
+        _buffer_index++
+        if ($0 ~ _till) {
+            _matched_till = "true"
+        }
+    } else {
+        if ($0 ~ _from && $0 ~ _till) {
+            _lines_buffer[_buffer_index] = $0
+            _buffer_index++
+            _matched_from = "true"
+            _matched_till = "true"
+        } else if ($0 ~ _from) {
+            _lines_buffer[_buffer_index] = $0
+            _buffer_index++
+            _matched_from = "true"
+        }
+    }
+
+
+    if (_matched_till) {
+        for (i in _lines_buffer) {
+            print _lines_buffer[i]
+        }
+
+        ## Default variables prior to reading more from inputs
+        _matched_from = ""
+        _matched_till = ""
+        delete _lines_buffer
+        _buffer_index = 0
+    }
+
+}
+```

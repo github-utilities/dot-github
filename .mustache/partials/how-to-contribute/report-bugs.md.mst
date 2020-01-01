@@ -1,0 +1,71 @@
+The [`bug_report.md`][branch__current__bug_report] Template should when opening a [New Issue][branch__current__issues_new]. Please be detailed and try to include all relevant information within the OP (Original Post). Additionally, if clarifications or more information is requested or discovered, then editing the OP is preferred to adding another post or opening a new issue.
+
+
+Bugs may also be reported via a Pull Request that suggests fixes, in which case skip opening an Issue and instead use the `:bug:` emoji_word as the first _word_ of the fix commit.
+
+
+**Example Bug Report Pull Request**
+
+
+```Bash
+git checkout master
+git merge --strategy-option theirs --squash dev-master
+
+
+git commit -F- <<'EOF'
+:bug: memory leak `cow_bell(solo_count_down)` when `solo_count_down=<NaN>`
+
+
+
+**Fixes**
+
+
+- `new-script.sh` file, fixes `cow_bell(solo_count_down)` being called before previous solo has ended
+
+- `README.md` file, removes warnings about excessive cow_bell solos causing memory leaks
+EOF
+
+
+git push forked master
+```
+
+
+### Suggest Enhancements
+[heading__suggest_enhancements]:
+  #suggest-enhancements
+  ""
+
+
+The [`feature_request.md`][branch__current__feature_request] Template may be used when opening a [New Issue][branch__current__issues_new]. Whenever possible provide example/pseudo code along with a detailed description of what needs solved. Or in other-words; napkin-sketches are permitted if it helps readers better understand the scope.
+
+
+Or for faster consideration and adoption of new code, try adding new features via a Pull Request
+
+
+**Example Enhancement Pull Request**
+
+
+```Bash
+git checkout gh-pages
+git merge --strategy-option theirs --squash dev-gh-pages
+
+
+git commit -F- <<'EOF'
+:apple: Cow Bell solos supported on Mac OS
+
+
+
+**Additions**
+
+
+`new-script.sh` file;
+
+
+- feature detection for Mac OS, uses default media player for solos
+
+- feature detection for MS, however requires Bash sub-system to be installed
+EOF
+
+
+git push forked gh-pages
+```

@@ -1,0 +1,43 @@
+**Batch Variables**
+
+
+```Batch
+set _git_name='your-name'
+set _organization='{{ name }}'
+set _repository='project-name'
+
+set _https_origin_url="https://github.com/%_organization/%_repository.git"
+set _git_origin_url="git@github.com:%_organization/%_repository.git"
+set _https_fork_url="https://github.com/${_git_name}/${_repository}.git"
+set _git_fork_url="git@github.com:%_git_name/%_repository.git"
+```
+
+**Batch Git Commands**
+
+
+```Batch
+setlocal enableextensions enabledelayedexpansion
+
+
+md %HOMEDRIVE%%HOMEPATH%\github\%_git_name
+cd %HOMEDRIVE%%HOMEPATH%\github\%_git_name
+
+
+git clone --origin forked %_git_fork_url
+cd %_repository
+git checkout gh-pages
+git remote add origin %_git_origin_url
+
+
+git config --file=.gitmodules submodule.browser-storage.url %_https_fork_url
+git submodule sync
+git submodule update --init --recursive --remote
+
+cd modules\%_repository
+git remote add forked %_git_fork_url
+git fetch forked
+git branch --set-upstream-to=forked/master
+
+```
+
+> Pull Requests are most welcome for correcting anything that might be erroneous.

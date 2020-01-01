@@ -1,0 +1,109 @@
+There may be _`orphan`_ branches utilized by {{ name }} for separating Code to be included in other projects from Documentation and Usage Examples. Non-orphaned development branches are encouraged when adding features or fixing bugs.
+
+
+**`master`** branch generally contain;
+
+
+- _`lib`_ or _`shared-functions`_ directory, should **only** be used for files that directly support the _`script-name.sh`_ file, otherwise please split out reusable code to separate repositories for including as submodules within the `gh-pages` branch
+
+- `.git/` directory, required for version tracking and logging changes
+
+- _`.github/README.md`_ file, should be a _quick start_ documenting installation and/or usage
+
+- _`script-name.sh`_ file, any dependencies should be listed within the _`.gitmodules`_ file under the **`gh-pages`** branch
+
+
+**`gh-pages`** branch (sometimes `example` branch) may contain;
+
+
+- `modules` directory, that contains a submodule subdirectory tracking the `master` branch, eg. `modules/trap-failure`
+
+- `.gitmodules` file, used by Git to version track submodules
+
+- `.travis.yml` file, used by Travis CI for public automated tests of code
+
+- `.github/README.md` file, should be a _quick start_ on development setup for fixing bugs or adding features via Pull Requests
+
+- `example_usage.sh` file, should demonstrate how code from the `master` branch is intended to be used
+
+
+All branches should contain a `LICENSE` file, each file should make reference to the license in use, and Pull Requests may be opened only if shared under the same license for a given file and/or repository.
+
+
+Depending upon language(s) utilized by a given repository the above file structure may change slightly, however, each branch should be kept _spartan_!
+
+
+#### Development Git Branches
+[heading__development_git_branches]:
+  #development-git-branches
+  ""
+
+
+Development branches are excellent for privately tracking series of changes for new features or especially pervasive bugs. Merging with a _`squash`_ commit back to one of the _main line_ branches prior to publicly pushing to a fork is encouraged, however, please try to be _targeted_ as to what each committed change pertains to.
+
+
+**Example `dev-master` branch initialization**
+
+
+```bash
+cd "${HOME}/github/${_organization}/new-project"
+
+
+git checkout master
+git checkout -b dev-master
+```
+
+
+Commit changes to `dev-master`, then after tests have passed preform a `squash` merge of `dev-master` from the `master` branch
+
+
+```Bash
+git checkout master
+git merge --strategy-option theirs --squash dev-master
+
+git commit -F- <<'EOF'
+:bug: Fixes volume not being set to _`11`_ for solos
+
+
+
+**Edits**
+`cow_bell.sh` file, sets volume to max when `cow_bell()` solo starts
+EOF
+
+
+git push forked master
+```
+
+
+#### Git Merge Tips
+[heading__git_merge_tips]:
+  #git-merge-tips
+  ""
+
+
+**Never** `git merge master` from the `gh-pages` branch, and definitely do **not** `git merge gh-pages` when the `master` branch is checked out; orphaned branches should only be merged to and from their respective development (**_`dev-`_**) prefixed branches.
+
+
+Squash merging is preferred for targeted edits, eg...
+
+
+```bash
+git checkout master
+git merge --strategy-option theirs --squash dev-master
+
+
+git commit -F- <<'EOF'
+:shell: Asking permission from checkboxes before modifying state
+
+
+
+**Changes**
+`new-script.js` file, `uncheck_all()` continues on unchecked boxes and `check_all()` continues on checked boxes
+EOF
+
+
+git push forked master
+```
+
+
+Also be wary of _`rm`_ vs _`git rm`_ and _`mv`_ vs _`git mv`_ commands, when merging from a development branch back to one of the _mainline_ branches the _non-`git`_ wrapped commands will **not** update state between branches, and Pull Requests that confuse version management will be rejected.

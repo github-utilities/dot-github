@@ -1,0 +1,100 @@
+# Security
+
+
+------
+
+
+#### Table of Contents
+
+
+- [Security Policy][heading__security_policy]
+
+- [Vulnerability Reporting][heading__vulnerability_reporting]
+
+- [License][heading__license]
+
+- [Attribution][heading__attribution]
+
+
+------
+
+
+## Security Policy
+[heading__security_policy]:
+  #security-policy
+  ""
+
+
+___
+
+
+## Vulnerability Reporting
+[heading__vulnerability_reporting]:
+  #vulnerability-reporting
+  ""
+
+
+Use this section to tell people how to report a vulnerability.
+
+Tell them where to go, how often they can expect to get an update on a
+reported vulnerability, what to expect if the vulnerability is accepted or
+declined, etc.
+
+
+___
+
+
+{{#license}}
+## License
+[heading__license]:
+  #license
+  "&#x2696; Legal side of Open Source"
+
+
+```
+{{{ includeLicense }}}
+```
+
+
+For further details review full length version of [{{ license }}][branch__current__license] License.
+{{/license}}
+{{^license}}
+## License
+[heading__license]:
+  #license
+  "&#x2696; All rights reserved"
+
+
+```
+All rights reserved.
+```
+
+
+For further details contact {{# toTitleCase }}{{ name }}{{/ toTitleCase }}.
+{{/license}}
+
+
+___
+
+
+## Attribution
+[heading__attribution]:
+  #attribution
+  ""
+
+
+Modified from default GitHub Security policy Template
+
+
+
+[organization__security__alerts]:
+  https://github.com/{{ name }}/.github/network/alerts
+  "&#x0026A0; Tracks security vulnerabilities that apply to Organization"
+
+[organization__security__advisories]:
+  https://github.com/{{ name }}/.github/security/advisories
+  "Discuss, fix, and publish information about security vulnerabilities"
+
+[organization__security__policy]:
+  https://github.com/{{ name }}/.github/security/policy
+  "How to securely report security vulnerabilities to Organization"

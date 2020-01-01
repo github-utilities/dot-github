@@ -1,0 +1,75 @@
+- Use HTML5 tags that are well supported and pre HTML5 tags anywhere else
+
+- In-line `<style></style>` and/or `<script></script>` tags for **quick** examples, otherwise split things into separate Labeled Code Blocks and include relative `src="script.js"` or `href="style.css"` attributes
+
+
+**`index.html`**
+
+
+```HTML
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>Words for Tab or Window Title Bar</title>
+
+
+    <meta charset="utf-8">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+
+    <link type="text/css" href="assets/css/main.css" rel="stylesheet"/>
+
+
+    <script type="text/javascript" src="assets/javascript-modules/deep-thought/deep-thought.js"></script>
+
+    <script type="text/javascript">
+      import DeepThought from 'assets/javascript/deep-thought/deep-thought.js';
+      /**
+       * Example usage for DeepThought class
+       */
+      const thinker = new DeepThought('multiply');
+
+
+      /**
+       * @param {number} n - Number of iterations and length of returned list
+       * @returns {list}
+       */
+      function think_until(n) {
+        let thoughts = [];
+        for (let i = 0; i < n; i++) {
+          thoughts.push(thinker.calculate_meaning(5, i))
+          console.log('Thought ' + i + ' -> ' + thoughts[i]);
+        }
+        return thoughts;
+      }
+    </script>
+
+  </head>
+
+
+  <body onload="think_until(5);">
+    <header class="container__header">
+      <h1 class="header__title">Title of Document</h1>
+
+      <p class="header__description">
+        Short description about content of document, project, and/or code
+      </p>
+    </header>
+
+    <div class="container__main_content">
+      <h4>Table of Contents</h4>
+      <ul>
+        <li><a href="#first-section">First</a></li>
+      </ul>
+
+      <h2 id="first-section">First Section</h2>
+      <p>A thing or two about git...</p>
+    </div>
+
+    <div class="container__footer">
+      <h2>Site Footer</h2>
+    </div>
+  </body>
+</html>
+```

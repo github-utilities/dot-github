@@ -1,0 +1,57 @@
+- Lines should not exceed `120` columns wide for code and no more than `80` columns wide for comment blocks
+
+- Comments in most cases should precede code and be formated for digestion by [JSDoc][jsdoc__block_tags] or similar tools
+
+- Use `var` sparingly, and `const`/`let` variable assignments where necessary
+
+- Return _something_ from Methods or Functions even if that is a boolean status of some object mutation
+
+- `throw` and `except` errors! Preferably of specific types or of a descriptive nature
+
+- `continue` past non-matches within loops to avoid _over-nesting_ of conditional logic
+
+
+**`assets/javascript-modules/deep-thought/deep-thought.js`**
+
+
+```JavaScript
+class DeepThought {
+  /**
+   * Does some classy things with numerical objects
+   * @copyright S0AndS0 2020 GNU AGPL version 3
+   * @param {string} operation - Mathematical operation to perform
+   * @this DeepThought
+   */
+  constructor(operation) {
+    this.valid_operations = ['multiply', 'divide', 'subtract', 'sum', 'add'];
+    if (this.valid_operations.indexOf(operation) == -1) {
+      throw new Error('Valid Operations are -> ' + this.valid_operations);
+    }
+    this.operation = operation;
+  }
+
+  /**
+   * @param {number} life         - First number to apply `this.operation` to
+   * @param {number} the_universe - Second number to apply `this.operation` to
+   * @returns {?number}
+   * @this DeepThought
+   */
+  calculate_meaning(life, the_universe) {
+    let results_of_everything = NaN;
+    switch (this.operation) {
+      case 'multiply':
+        results_of_everything = life * the_universe;
+        break;
+      case 'divide':
+        results_of_everything = life / the_universe;
+        break;
+      case 'subtract':
+        results_of_everything = life - the_universe;
+        break;
+      default:
+      results_of_everything = life + the_universe;
+    }
+    return results_of_everything;
+  }
+}
+```
