@@ -9,6 +9,7 @@
 const Mustache = require('mustache');
 const File_System = require('fs');
 const Path = require('path');
+const Os = require('os');
 
 /**
  * Copy of View configurations that is passed about
@@ -274,7 +275,7 @@ class App {
 
         const rendered_mustache = Mustache.render(data.toString(), this.view, objectified_partials, tags);
 
-        const full_out_path = Path.join(this.output_directory, out_path);
+        const full_out_path = Path.join(this.output_directory, out_path).replace(/^~/, Os.homedir());
 
         this._makeDirectories(Path.dirname(full_out_path));
 
