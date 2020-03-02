@@ -296,7 +296,7 @@ class App {
     if (this.view.license) {
       const src_path = Path.join(__dirname, '.mustache', 'licenses', this.view.license, 'LICENSE');
 
-      const dest_path = Path.join(this.output_directory, 'LICENSE');
+      const dest_path = Path.join(this.output_directory, 'LICENSE').replace(/^~/, Os.homedir());
 
       File_System.copyFile(src_path, dest_path, (err) => {
         if (err) {
