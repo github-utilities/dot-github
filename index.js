@@ -210,7 +210,7 @@ class App {
 
     const conduct_data = File_System.readFileSync(in_path);
 
-    const out_path = Path.join(this.output_directory, 'CODE_OF_CONDUCT.md')
+    const out_path = Path.join(this.output_directory.replace(/^~/, Os.homedir()), 'CODE_OF_CONDUCT.md');
 
     File_System.writeFile(out_path, Mustache.render(conduct_data.toString(), this.view), {'encoding': 'utf8'}, (err) => {
       if (err) {
