@@ -210,7 +210,7 @@ class App {
 
     const conduct_data = File_System.readFileSync(in_path);
 
-    const out_path = Path.join(this.output_directory.replace(/^~/, Os.homedir()), 'CODE_OF_CONDUCT.md');
+    const out_path = Path.join(this.absPath(this.output_directory), 'CODE_OF_CONDUCT.md');
 
     File_System.writeFile(out_path, Mustache.render(conduct_data.toString(), this.view), {'encoding': 'utf8'}, (err) => {
       if (err) {
@@ -263,6 +263,21 @@ class App {
   }
 
   /**
+   * Returns absolute path
+   * @param {string} input
+   * @returns {string}
+   */
+  absPath(input) {
+    if (input.indexOf('~/') === 0) {
+      return input.replace(/^~\//, Os.homedir());
+    }
+    return input.replace(
+      new RegExp(`^(?!${Path.sep})`),
+      `${__dirname}${Path.sep}`
+    );
+  };
+
+  /**
    *
    */
   renderFiles() {
@@ -275,7 +290,7 @@ class App {
 
         const rendered_mustache = Mustache.render(data.toString(), this.view, objectified_partials, tags);
 
-        const full_out_path = Path.join(this.output_directory, out_path).replace(/^~/, Os.homedir());
+        const full_out_path = Path.join(this.absPath(this.output_directory), out_path);
 
         this._makeDirectories(Path.dirname(full_out_path));
 
@@ -296,7 +311,7 @@ class App {
     if (this.view.license) {
       const src_path = Path.join(__dirname, '.mustache', 'licenses', this.view.license, 'LICENSE');
 
-      const dest_path = Path.join(this.output_directory, 'LICENSE').replace(/^~/, Os.homedir());
+      const dest_path = Path.join(this.absPath(this.output_directory), 'LICENSE');
 
       File_System.copyFile(src_path, dest_path, (err) => {
         if (err) {
