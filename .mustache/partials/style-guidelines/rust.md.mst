@@ -1,0 +1,122 @@
+Rust is a strongly typed, memory safe, and fast compiled language with a verity of targets
+
+
+```Bash
+cargo init fibonocci
+
+cd fibonocci
+```
+
+
+**`src/main.rs`**
+
+
+```Rust
+/// Call `next()` method to get next `u32` value from Fibonocci sequence
+///
+/// **Example Setup**
+///
+///     for i in Fibonocci::new().take(4) {
+///         println!("i -> {}", i);
+///     }
+///
+/// **Example Output**
+///
+///     i -> 1
+///     i -> 1
+///     i -> 3
+struct Fibonocci {
+    curr: u32,
+    next: u32
+}
+
+impl Iterator for Fibonocci {
+    type Item = u32;
+
+    /// `for` loops call `next()` method implicitly
+    ///
+    /// **Example Setup**
+    ///
+    ///     let mut fib_iter = Fibonocci::new();
+    ///     let mut start: u32 = 0;
+    ///     let stop: u32 = 5;
+    ///     while start < stop {
+    ///         let next_value = fib_iter.next();
+    ///         match next_value {
+    ///             Some(value) => println!("Next Value -> {}", value),
+    ///             None => println!("No value from fib_iter.next()!")
+    ///         }
+    ///         start += 1;
+    ///     }
+    ///
+    /// **Example Output**
+    ///
+    ///     Next Value -> 1
+    ///     Next Value -> 1
+    ///     Next Value -> 2
+    ///     Next Value -> 3
+    ///     Next Value -> 5
+    ///
+    fn next(&mut self) -> Option<u32> {
+        let new_next = self.curr + self.next;
+
+        self.curr = self.next;
+        self.next = new_next;
+
+        Some(self.curr)
+    }
+}
+
+impl Fibonocci {
+    /// Returns instance of `Fibonocci` with `curr` set to `0` and `next` set to `1`
+    ///
+    /// **Example Setup**
+    ///
+    ///     let mut fib_iter = Fibonocci::new();
+    ///     println!("Next fib_iter -> {}", fib_iter.next());
+    ///
+    /// **Example Output**
+    ///
+    ///     Next fib_iter -> 1
+    ///
+    fn new() -> Self {
+        return Self {
+            curr: 0,
+            next: 1
+        };
+    }
+}
+
+
+fn main() {
+    // `take(n)` method reduces an `Iterator` to first `n` terms
+    for i in Fibonocci::new().take(4) {
+        println!("i -> {}", i);
+    }
+
+    println!("___");
+    // `skip(n)` method skips first `n` values returned from `Iterator`
+    for i in Fibonocci::new().skip(4).take(4) {
+        println!("i -> {}", i);
+    }
+
+    println!("___");
+    let fib = Fibonocci::new();
+    for i in fib.skip(4).take(4) {
+        println!("i -> {}", i);
+    }
+
+    println!("___");
+    let mut fib_iter = Fibonocci::new();
+    let mut start: u32 = 0;
+    let stop: u32 = 5;
+    while start < stop {
+        let next_value = fib_iter.next();
+        match next_value {
+            Some(value) => println!("Next Value -> {}", value),
+            None => println!("No value from fib_iter.next()!")
+        }
+        start += 1;
+    }
+}
+```

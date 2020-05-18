@@ -1,0 +1,131 @@
+TypeScript attempts to bring type safety to JavaScript and enables transpiling to target versions of ECMAscript
+
+
+```Bash
+git init deep-thought
+
+
+cd deep-thought
+npm init .
+
+
+npm install --save-dev typescript
+```
+
+
+------
+
+
+**`package.json`**
+
+
+```JSON
+{
+  "name": "deep-thought",
+  "version": "0.0.1",
+  "description": "Thinks so deep that it may squeak",
+  "main": "deep-thought.js",
+  "scripts": {
+    "ts-build": "tsc --build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/development-tutorials/deep-thought.git"
+  },
+  "keywords": [
+    "example"
+  ],
+  "author": "S0AndS0",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/development-tutorials/deep-thought/issues"
+  },
+  "homepage": "https://github.com/development-tutorials/deep-thought#readme",
+  "devDependencies": {
+    "typescript": "^3.8.3"
+  }
+}
+```
+
+
+------
+
+
+**`tsconfig.json`**
+
+
+```JSON
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "es6",
+    "lib": ["dom","es2017"],
+    "locale": "en-US",
+    "noImplicitAny": false,
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "outDir": "js"
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "files": [
+    "ts/index.ts",
+    "ts/jsdoc2md.ts"
+  ]
+}
+```
+
+
+------
+
+
+**`deep-thought.js`**
+
+
+```TypeScript
+class DeepThought {
+  valid_operations: string[];
+  operation: string;
+
+  /**
+   * Does some classy things with numerical objects
+   * @copyright S0AndS0 2020 GNU AGPL version 3
+   * @param {string} operation - Mathematical operation to perform
+   * @this DeepThought
+   */
+  constructor(operation: string) {
+    this.valid_operations = ['multiply', 'divide', 'subtract', 'sum', 'add'];
+    if (!this.valid_operations.includes(operation)) {
+      throw new Error(`Valid Operations are -> ${this.valid_operations}`);
+    }
+    this.operation = operation;
+  }
+
+  /**
+   * @param {number} life         - First number to apply `this.operation` to
+   * @param {number} the_universe - Second number to apply `this.operation` to
+   * @returns {number}
+   * @this DeepThought
+   */
+  calculate_meaning(life: number, the_universe: number): number {
+    let results_of_everything: number = NaN;
+    switch (this.operation) {
+      case 'multiply':
+        results_of_everything = life * the_universe;
+        break;
+      case 'divide':
+        results_of_everything = life / the_universe;
+        break;
+      case 'subtract':
+        results_of_everything = life - the_universe;
+        break;
+      default:
+      results_of_everything = life + the_universe;
+    }
+    return results_of_everything;
+  }
+}
+```

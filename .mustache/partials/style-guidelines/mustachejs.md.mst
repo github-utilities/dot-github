@@ -1,0 +1,315 @@
+{{=<% %>=}}
+
+
+MustacheJS is only as complex as a project and author(s) require, following is a _cheat-sheet_ for utilizing and customizing templates.
+
+
+**`dataView.json`**
+
+
+```JSON
+{
+  "name": "development-tutorials",
+  "license": "AGPL-3.0",
+  "code_of_conduct": "contributor-covenant",
+  "languages": [
+    {
+      "name": "Awk",
+      "emoji_word": ":tophat:",
+      "emoji_code": "&#x1F3A9;"
+    },
+    {
+      "name": "Bash",
+      "emoji_word": ":shell:",
+      "emoji_code": "&#x1F41A;"
+    },
+    {
+      "name": "CSS",
+      "emoji_word": ":paintbrush:",
+      "emoji_code": "&#x1F58C;"
+    }
+  ],
+  "files": [
+    {
+      "in_path": ".mustache/.github/ISSUE_TEMPLATE/bug_report.md.mst",
+      "out_path": ".github/ISSUE_TEMPLATE/bug_report.md"
+    },
+    {
+      "in_path": ".mustache/CONTRIBUTING.md.mst",
+      "out_path": "CONTRIBUTING.md",
+      "partials": [
+        ".mustache/partials/development-setup/linux.md.mst",
+        ".mustache/partials/development-setup/windows.md.mst",
+        ".mustache/partials/git-tips/branches.md.mst"
+      ]
+    }
+  ]
+}
+```
+
+
+------
+
+
+**`mustache.js`**
+
+
+```JavaScript
+#!/usr/bin/env node
+
+
+const File_System = require('fs');
+const Path = require('path');
+const Os = require('os');
+
+const View = require('./dataView.json');
+const Mustache = require('mustache');
+
+
+const Helpers = {
+  /**
+   * @function toLowerCase
+   * @returns {render_callback}
+   * @this {View}
+   */
+  toLowerCase: () => {
+    /**
+     * @function render_callback
+     * @param {string} text - Text that is encased within Mustache tag
+     * @param {View} render - Reference to `View` configurations
+     */
+    const render_callback = (text, render) => render(text).trim().toLowerCase();
+    return render_callback;
+  },
+  /**
+   * @function includeConduct
+   * @returns {render_callback}
+   * @this {View} - AKA `dataView.json` configurations
+   */
+  includeConduct: function() {
+    let conduct_include_path;
+    if (typeof this === 'object') {
+      conduct_include_path = Path.join(__dirname,
+                                       '.mustache',
+                                       'codes_of_conduct',
+                                       this.code_of_conduct,
+                                       'include.mustache');
+    } else {
+      conduct_include_path = Path.join(__dirname,
+                                       '.mustache',
+                                       'codes_of_conduct',
+                                       this,
+                                       'include.mustache');
+    }
+
+    if (!File_System.existsSync(conduct_include_path)) {
+      throw new ReferenceError(`Cannot find conduct file -> ${conduct_include_path}`);
+    }
+
+    const conduct_data = File_System.readFileSync(conduct_include_path);
+    return Mustache.render(conduct_data.toString(), View);
+  },
+}
+
+
+class App {
+  /**
+   * @param {any} view
+   * @param {Object} helpers
+   */
+  constructor(view, helpers) {
+    this.view = view;
+
+    Object.keys(helpers).forEach((key) => {
+      if (!(key in view)) {
+        this.view[key] = helpers[key];
+      }
+    });
+
+    this.output_directory = view.output_directory ? view.output_directory : __dirname;
+  }
+
+  /**
+   * Returns absolute path
+   * @param {string} input
+   * @returns {string}
+   */
+  absPath(input) {
+    if (input.indexOf('~/') === 0) {
+      return input.replace(/^~\//, `${Os.homedir()}/`);
+    }
+    return input.replace(
+      new RegExp(`^(?!${Path.sep})`),
+      `${__dirname}${Path.sep}`
+    );
+  }
+
+  /**
+   * Writes files parsed with `Mustache.render`
+   */
+  renderFiles() {
+    this.view.files.forEach(({in_path, out_path, partials, tags}) => {
+      const objectified_partials = this._objectifyPartials(partials);
+      File_System.readFile(in_path, (err, data) => {
+        if (err) {
+          throw err;
+        }
+
+        const rendered_mustache = Mustache.render(data.toString(), this.view, objectified_partials, tags);
+
+        const full_out_path = Path.join(this.absPath(this.output_directory), out_path);
+
+        this._makeDirectories(Path.dirname(full_out_path));
+
+        File_System.writeFile(full_out_path, rendered_mustache, {'encoding': 'utf8'}, (err) => {
+          if (err) {
+            throw err;
+          }
+
+          console.log(`Wrote file -> ${out_path}`);
+        });
+      });
+    });
+  }
+}
+
+const main_app = new App(View, Helpers);
+main_app.renderFiles();
+```
+
+
+------
+
+
+- Comment within a `.mst` file...
+
+
+```MustacheJS
+{{! This won't be included in output }}
+```
+
+
+------
+
+
+- If `code_of_conduct` Mustache input...
+
+
+```MustacheJS
+{{#code_of_conduct}}
+- [:customs: Code of Conduct][heading__code_of_conduct]
+{{/code_of_conduct}}
+```
+
+
+- If `code_of_conduct` Mustache output...
+
+
+```MarkDown
+- [:customs: Code of Conduct][heading__code_of_conduct]
+```
+
+
+------
+
+
+- If not `license` Mustache input...
+
+
+```MustacheJS
+{{^license}}
+## License
+[heading__license]:
+  #license
+  "&#x2696; All rights reserved"
+
+
+All rights reserved.
+
+
+For further details contact {{ name }}.
+{{/license}}
+```
+
+
+- If not `license` Mustache output...
+
+
+```MarkDown
+## License
+[heading__license]:
+  #license
+  "&#x2696; All rights reserved"
+
+
+All rights reserved.
+
+
+For further details contact development-tutorials.
+```
+
+
+
+------
+
+
+- For `emoji_word` and `name`, in `languages` and calling `toLowerCase` function with parameter, Mustache input...
+
+
+```MustacheJS
+{{#languages}}
+- [{{emoji_word}} {{name}}][heading__style_guidelines__{{#toLowerCase}}{{name}}{{/toLowerCase}}]
+{{/languages}}
+```
+
+
+- For `emoji_word` and `name`, in `languages` and calling `toLowerCase` function with parameter, Mustache output...
+
+
+```MarkDown
+- [:tophat: Awk][heading__style_guidelines__awk]
+- [:shell: Bash][heading__style_guidelines__bash]
+- [:paintbrush: CSS][heading__style_guidelines__css]
+```
+
+
+------
+
+
+- Calling `includeConduct` function without input...
+
+
+```MustacheJS
+{{{ includeConduct }}}
+```
+
+
+```MarkDown
+## Scope
+
+This Code of Conduct applies both within project spaces and in public spaces
+when an individual is representing the project or its community. Examples of
+representing a project or community include using an official project e-mail
+address, posting via an official social media account, or acting as an appointed
+representative at an online or offline event. Representation of a project may be
+further defined and clarified by project maintainers.
+```
+
+
+------
+
+
+- Escaping `{{ }}` (handlebar) tags by assigning different characters...
+
+
+```
+{{=<% %>=}}
+```
+
+
+... however, do not forget to reassign handlebars after...
+
+
+```
+<%={{ }}=%>
+```
