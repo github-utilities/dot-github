@@ -1,4 +1,7 @@
-# Security
+# Security Policy
+[heading__security_policy]:
+  #security-policy
+  ""
 
 
 ------
@@ -9,7 +12,13 @@
 
 - [Security Policy][heading__security_policy]
 
-- [Vulnerability Reporting][heading__vulnerability_reporting]
+- [Contact for Reporting][heading__contacts_for_reporting]
+
+- [Response Process][heading__response_process]
+
+  - [Information Collection][heading__information_collection]
+
+- [Mitigation][heading__mitigation]
 
 - [License][heading__license]
 
@@ -19,26 +28,40 @@
 ------
 
 
-## Security Policy
-[heading__security_policy]:
-  #security-policy
+## Contacts for Reporting
+[heading__contacts_for_reporting]:
+  #contacts-for-reporting
+  "Who to report vulnerabilities to"
+
+
+Please do **not** open Issues to report security incidents, instead contact {{ email }} to provide notice of security incidents or vulnerabilities.
+
+
+If a response to your report is not received within one business day, or if you believe the incident is critical, please contact support@github.com to disable {{ anem }} access until the incident is resolved.
+
+
+___
+
+
+## Response Process
+[heading__response_process]:
+  #response-process
+  ""
+
+
+### Information Collection
+[heading__information_collection]:
+  #information-collection
   ""
 
 
 ___
 
 
-## Vulnerability Reporting
-[heading__vulnerability_reporting]:
-  #vulnerability-reporting
+## Mitigation
+[heading__mitigation]:
+  #mitigation
   ""
-
-
-Use this section to tell people how to report a vulnerability.
-
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
 
 
 ___
@@ -85,6 +108,7 @@ ___
 
 Modified from default GitHub Security policy Template
 
+- [GitHub -- Adding a Security Policy to Your Repository](https://help.github.com/en/github/managing-security-vulnerabilities/adding-a-security-policy-to-your-repository)
 
 
 [organization__security__alerts]:
@@ -98,3 +122,7 @@ Modified from default GitHub Security policy Template
 [organization__security__policy]:
   https://github.com/{{ name }}/.github/security/policy
   "How to securely report security vulnerabilities to Organization"
+
+[organization__security__advisories]:
+  https://github.com/gha-utilities/.github/security/advisories
+  ""
