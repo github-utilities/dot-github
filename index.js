@@ -275,7 +275,7 @@ class App {
       new RegExp(`^(?!${Path.sep})`),
       `${__dirname}${Path.sep}`
     );
-  };
+  }
 
   /**
    *
