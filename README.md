@@ -492,6 +492,10 @@ Resources that where helpful in building this project so far
 
 - [Contributor Covenant -- Code of Conduct](https://www.contributor-covenant.org/version/1/4/code-of-conduct.html)
 
+- [GitHub -- Referencing Issues and Pull Requests](https://help.github.com/en/articles/basic-writing-and-formatting-syntax#referencing-issues-and-pull-requests)
+
+- [GitHub -- `janl/mustache.js#357` -- how to print literal `{` in front of mustache variable?](https://github.com/janl/mustache.js/issues/357#issuecomment-35220756)
+
 
 ___
 
