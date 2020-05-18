@@ -91,7 +91,8 @@ Modify the `dataView.json` file, usually by removing unneeded `languages` and ed
   "output_directory": "~/git/hub/org-name/.github",
   "name": "org-name",
   "author": "your-name",
-  "description": "Quick statement on what this Account or Organization aims to accomplish",
+  "email": "account@host.tld",
+  "description": "Quick statement on what this Organization aims to accomplish",
   "license": "AGPL-3.0",
   "code_of_conduct": "contributor-covenant",
   "funding": {
