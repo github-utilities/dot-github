@@ -145,14 +145,29 @@ Modify the `dataView.json` file, usually by removing unneeded `languages` and ed
       "emoji_code": "&#x1F4DD;"
     },
     {
+      "name": "MustacheJS",
+      "emoji_word": ":wavy_dash:",
+      "emoji_code": "&#x3030;"
+    },
+    {
       "name": "Python",
       "emoji_word": ":snake:",
       "emoji_code": "&#x1F40D;"
     },
     {
+      "name": "Rust",
+      "emoji_word": ":gear:",
+      "emoji_code": "&#x2699;"
+    },
+    {
       "name": "SCSS",
       "emoji_word": ":factory:",
       "emoji_code": "&#x1F3ED;"
+    },
+    {
+      "name": "TypeScript",
+      "emoji_word": ":symbols:",
+      "emoji_code": "&#x1F523;"
     }
   ],
   "files": [
@@ -198,8 +213,11 @@ Modify the `dataView.json` file, usually by removing unneeded `languages` and ed
         ".mustache/partials/style-guidelines/javascript.md.mst",
         ".mustache/partials/style-guidelines/liquid.md.mst",
         ".mustache/partials/style-guidelines/markdown.md.mst",
+        ".mustache/partials/style-guidelines/mustachejs.md.mst",
         ".mustache/partials/style-guidelines/python.md.mst",
-        ".mustache/partials/style-guidelines/scss.md.mst"
+        ".mustache/partials/style-guidelines/rust.md.mst",
+        ".mustache/partials/style-guidelines/scss.md.mst",
+        ".mustache/partials/style-guidelines/typescript.md.mst"
       ]
     },
     {
