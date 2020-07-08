@@ -1,0 +1,31 @@
+Vim scripts can be saved as plugins via the following path syntax...
+
+
+```
+~/.vim/plugin/<name>/plugin/<name>.vim
+```
+
+
+... for example to auto-load a spelling shortcuts plugin could be similar to...
+
+
+```
+~/.vim/plugin/spelling-shortcuts/plugin/spelling-shortcuts.vim
+```
+
+
+**`spelling-shortcuts.vim`**
+
+
+```Vim
+nnoremap <leader>sp :call FixLastSpell()<cr>
+nnoremap <leader>sn :call FixNextSpell()<cr>
+
+function! FixLastSpell()
+  normal! mm[s1z=`m
+endfunction
+
+function! FixNextSpell()
+  normal! mm]s1z=`m
+endfunction
+```
