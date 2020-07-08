@@ -129,6 +129,7 @@
         ".mustache/partials/style-guidelines/docker.md.mst",
         ".mustache/partials/style-guidelines/html.md.mst",
         ".mustache/partials/style-guidelines/javascript.md.mst",
+        ".mustache/partials/style-guidelines/kivy.md.mst",
         ".mustache/partials/style-guidelines/liquid.md.mst",
         ".mustache/partials/style-guidelines/markdown.md.mst",
         ".mustache/partials/style-guidelines/mustachejs.md.mst",
