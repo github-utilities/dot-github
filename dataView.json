@@ -81,6 +81,11 @@
       "name": "TypeScript",
       "emoji_word": ":symbols:",
       "emoji_code": "&#x1F523;"
+    },
+    {
+      "name": "Vim",
+      "emoji_word": ":fountain_pen:",
+      "emoji_code": "&#x1F58B;"
     }
   ],
   "files": [
@@ -130,7 +135,8 @@
         ".mustache/partials/style-guidelines/python.md.mst",
         ".mustache/partials/style-guidelines/rust.md.mst",
         ".mustache/partials/style-guidelines/scss.md.mst",
-        ".mustache/partials/style-guidelines/typescript.md.mst"
+        ".mustache/partials/style-guidelines/typescript.md.mst",
+        ".mustache/partials/style-guidelines/vim.md.mst"
       ]
     },
     {
