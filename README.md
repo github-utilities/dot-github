@@ -111,6 +111,11 @@ Modify the `dataView.json` file, usually by removing unneeded `languages` and ed
       "emoji_code": "&#x1F41A;"
     },
     {
+      "name": "Clang",
+      "emoji_word": ":dragon:",
+      "emoji_code": "&#x1f409"
+    },
+    {
       "name": "CSS",
       "emoji_word": ":paintbrush:",
       "emoji_code": "&#x1F58C;"
@@ -166,6 +171,11 @@ Modify the `dataView.json` file, usually by removing unneeded `languages` and ed
       "emoji_code": "&#x1F3ED;"
     },
     {
+      "name": "Solidity",
+      "emoji_word": ":chains:",
+      "emoji_code": "&#x26d3"
+    },
+    {
       "name": "TypeScript",
       "emoji_word": ":symbols:",
       "emoji_code": "&#x1F523;"
@@ -218,6 +228,7 @@ Modify the `dataView.json` file, usually by removing unneeded `languages` and ed
         ".mustache/partials/style-guidelines/python.md.mst",
         ".mustache/partials/style-guidelines/rust.md.mst",
         ".mustache/partials/style-guidelines/scss.md.mst",
+        ".mustache/partials/style-guidelines/solidity.md.mst",
         ".mustache/partials/style-guidelines/typescript.md.mst"
       ]
     },
@@ -307,7 +318,7 @@ git push hub master
 **:tada: Excellent :tada:** your Organization is now ready to begin unitizing documents built from this repository!
 
 
-___
+______
 
 
 ## Notes
@@ -391,7 +402,7 @@ git checkout master
       "name": "lang-name",
       "emoji_word": ":frog:",
       "emoji_code": "&#x1F438;"
-    }
+    },
     {
       "name": "Liquid",
       "emoji_word": ":fountain:",
@@ -475,7 +486,7 @@ git push fork master
 `4` Open a Pull Request when your changes are ready.
 
 
-___
+______
 
 
 ## Attribution
@@ -498,7 +509,7 @@ Resources that where helpful in building this project so far
 - [GitHub -- `janl/mustache.js#357` -- how to print literal `{` in front of mustache variable?](https://github.com/janl/mustache.js/issues/357#issuecomment-35220756)
 
 
-___
+______
 
 
 ## License
