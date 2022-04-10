@@ -333,3 +333,6 @@ Templating of this and other documents within the repository where compiled with
 [mustache_js]: https://github.com/janl/mustache.js
 
 [jekyll_admin]: https://github.com/S0AndS0/Jekyll_Admin
+{{!
+  vim: filetype=mustache
+}}
