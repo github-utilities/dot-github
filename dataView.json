@@ -78,6 +78,11 @@
       "emoji_code": "&#x1F3ED;"
     },
     {
+      "name": "Solidity",
+      "emoji_word": ":chains:",
+      "emoji_code": "&#x26d3"
+    },
+    {
       "name": "TypeScript",
       "emoji_word": ":symbols:",
       "emoji_code": "&#x1F523;"
@@ -136,6 +141,7 @@
         ".mustache/partials/style-guidelines/python.md.mst",
         ".mustache/partials/style-guidelines/rust.md.mst",
         ".mustache/partials/style-guidelines/scss.md.mst",
+        ".mustache/partials/style-guidelines/solidity.md.mst",
         ".mustache/partials/style-guidelines/typescript.md.mst",
         ".mustache/partials/style-guidelines/vim.md.mst"
       ]

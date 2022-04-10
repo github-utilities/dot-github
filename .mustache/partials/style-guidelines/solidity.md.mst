@@ -1,0 +1,44 @@
+- Many of the Solidity libraries may be installed via NPM, check [Truffle -- Package Management][truffle__package_managment] for details.
+
+- The [Prettier Solidity plugin][github__prettier_solidity__prettier_plugin_solidity] is encouraged to maintain consistent styling.
+
+- Documentation of functions and contracts should follow [Solidity -- NatSpec Format][solidity__natspec_format]
+
+
+```Solidity
+// SPDX-License-Identifier: AGPL-3.0
+pragma solidity 0.8.7;
+
+/// Math example
+library Math {
+    /// Adds two integers
+    function sum(int a, int b) public pure returns (int) {
+        return a + b;
+    }
+
+    /// Adds two unsigned integers
+    function sum(uint a, uint b) public pure returns (uint) {
+        return a + b;
+    }
+}
+
+contract Example {
+    address owner;
+
+    constructor(address calldata _owner) {
+        owner = _owner;
+    }
+
+
+}
+```
+
+
+[solidity__natspec_format]:
+  https://docs.soliditylang.org/en/v0.8.7/natspec-format.html
+
+[truffle__package_managment]:
+  https://www.trufflesuite.com/docs/truffle/getting-started/package-management-via-npm
+
+[github__prettier_solidity__prettier_plugin_solidity]:
+  https://github.com/prettier-solidity/prettier-plugin-solidity
